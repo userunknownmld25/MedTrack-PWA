@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 11 Web OS</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Desktop Background -->
+    <div id="desktop">
+        <div class="desktop-icons">
+            <div class="desktop-icon" data-app="file-manager">
+                <i class="fas fa-folder"></i>
+                <span>File Manager</span>
+            </div>
+            <div class="desktop-icon" data-app="browser">
+                <i class="fas fa-globe"></i>
+                <span>Browser</span>
+            </div>
+            <div class="desktop-icon" data-app="code-editor">
+                <i class="fas fa-code"></i>
+                <span>Code Editor</span>
+            </div>
+            <div class="desktop-icon" data-app="text-editor">
+                <i class="fas fa-file-alt"></i>
+                <span>Text Editor</span>
+            </div>
+            <div class="desktop-icon" data-app="terminal">
+                <i class="fas fa-terminal"></i>
+                <span>Terminal</span>
+            </div>
+            <div class="desktop-icon" data-app="paint">
+                <i class="fas fa-paint-brush"></i>
+                <span>Paint</span>
+            </div>
+            <div class="desktop-icon" data-app="video-editor">
+                <i class="fas fa-film"></i>
+                <span>Video Editor</span>
+            </div>
+            <div class="desktop-icon" data-app="media-player">
+                <i class="fas fa-play-circle"></i>
+                <span>Media Player</span>
+            </div>
+            <div class="desktop-icon" data-app="app-store">
+                <i class="fas fa-store"></i>
+                <span>App Store</span>
+            </div>
+        </div>
+
+        <!-- Windows Container -->
+        <div id="windows-container"></div>
+
+        <!-- Start Menu -->
+        <div id="start-menu" class="hidden">
+            <div class="start-menu-header">
+                <input type="text" id="start-search" placeholder="Search for apps, settings, and documents">
+            </div>
+            <div class="start-menu-content">
+                <div class="pinned-apps">
+                    <h3>Pinned</h3>
+                    <div class="app-grid">
+                        <div class="app-tile" data-app="file-manager">
+                            <i class="fas fa-folder"></i>
+                            <span>File Manager</span>
+                        </div>
+                        <div class="app-tile" data-app="browser">
+                            <i class="fas fa-globe"></i>
+                            <span>Browser</span>
+                        </div>
+                        <div class="app-tile" data-app="code-editor">
+                            <i class="fas fa-code"></i>
+                            <span>Code Editor</span>
+                        </div>
+                        <div class="app-tile" data-app="text-editor">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Text Editor</span>
+                        </div>
+                        <div class="app-tile" data-app="terminal">
+                            <i class="fas fa-terminal"></i>
+                            <span>Terminal</span>
+                        </div>
+                        <div class="app-tile" data-app="paint">
+                            <i class="fas fa-paint-brush"></i>
+                            <span>Paint</span>
+                        </div>
+                        <div class="app-tile" data-app="video-editor">
+                            <i class="fas fa-film"></i>
+                            <span>Video Editor</span>
+                        </div>
+                        <div class="app-tile" data-app="media-player">
+                            <i class="fas fa-play-circle"></i>
+                            <span>Media Player</span>
+                        </div>
+                        <div class="app-tile" data-app="game-center">
+                            <i class="fas fa-gamepad"></i>
+                            <span>Game Center</span>
+                        </div>
+                        <div class="app-tile" data-app="calculator">
+                            <i class="fas fa-calculator"></i>
+                            <span>Calculator</span>
+                        </div>
+                        <div class="app-tile" data-app="settings">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </div>
+                        <div class="app-tile" data-app="app-store">
+                            <i class="fas fa-store"></i>
+                            <span>App Store</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="start-menu-footer">
+                <div class="user-profile">
+                    <i class="fas fa-user-circle"></i>
+                    <span>User</span>
+                </div>
+                <div class="power-button">
+                    <i class="fas fa-power-off"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Taskbar -->
+        <div id="taskbar">
+            <div class="taskbar-left">
+                <button id="start-button" class="taskbar-button">
+                    <i class="fab fa-windows"></i>
+                </button>
+                <button class="taskbar-button search-button">
+                    <i class="fas fa-search"></i>
+                    <span>Search</span>
+                </button>
+            </div>
+            <div class="taskbar-center" id="taskbar-apps"></div>
+            <div class="taskbar-right">
+                <div class="system-tray">
+                    <i class="fas fa-chevron-up"></i>
+                    <i class="fas fa-wifi"></i>
+                    <i class="fas fa-volume-up"></i>
+                    <i class="fas fa-battery-full"></i>
+                </div>
+                <div class="clock">
+                    <div class="time"></div>
+                    <div class="date"></div>
+                </div>
+                <button class="notification-button">
+                    <i class="far fa-bell"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <i class="fab fa-windows loading-icon"></i>
+            <div class="loading-spinner"></div>
+            <p>Starting Windows 11 Web OS...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.44.0/min/vs/loader.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.24.1/full/pyodide.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
