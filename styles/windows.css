@@ -1,0 +1,486 @@
+/* Window Management Styles */
+
+#windows-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 48px);
+    pointer-events: none;
+    z-index: var(--z-windows);
+}
+
+.window {
+    position: absolute;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-heavy);
+    overflow: hidden;
+    pointer-events: auto;
+    transition: all var(--transition-fast);
+    min-width: 300px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.window.maximized {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: calc(100vh - 48px) !important;
+    border-radius: 0;
+    border: none;
+}
+
+.window.minimized {
+    opacity: 0;
+    transform: scale(0.8) translateY(50px);
+    pointer-events: none;
+}
+
+.window.focused {
+    z-index: 1000;
+    box-shadow: 0 8px 40px rgba(0, 120, 212, 0.3);
+}
+
+.window.resizing {
+    transition: none;
+}
+
+/* Window Header */
+.window-header {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-light);
+    padding: 0 var(--spacing-md);
+    cursor: move;
+    user-select: none;
+}
+
+.window-header:active {
+    cursor: grabbing;
+}
+
+.window-icon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: var(--spacing-sm);
+    color: var(--primary-blue);
+    flex-shrink: 0;
+}
+
+.window-title {
+    flex: 1;
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.window-controls {
+    display: flex;
+    align-items: center;
+    gap: 1px;
+    margin-left: var(--spacing-sm);
+}
+
+.window-control {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.window-control:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.window-control:active {
+    transform: scale(0.95);
+}
+
+.window-control.minimize:hover {
+    background: rgba(255, 193, 7, 0.2);
+    color: #FFC107;
+}
+
+.window-control.maximize:hover {
+    background: rgba(40, 167, 69, 0.2);
+    color: #28A745;
+}
+
+.window-control.close:hover {
+    background: var(--error-red);
+    color: white;
+}
+
+/* Window Content */
+.window-content {
+    flex: 1;
+    overflow: auto;
+    background: var(--bg-secondary);
+}
+
+/* Window Resize Handles */
+.resize-handle {
+    position: absolute;
+    background: transparent;
+    z-index: 10;
+}
+
+.resize-handle.n {
+    top: -3px;
+    left: 3px;
+    right: 3px;
+    height: 6px;
+    cursor: ns-resize;
+}
+
+.resize-handle.s {
+    bottom: -3px;
+    left: 3px;
+    right: 3px;
+    height: 6px;
+    cursor: ns-resize;
+}
+
+.resize-handle.e {
+    top: 3px;
+    right: -3px;
+    bottom: 3px;
+    width: 6px;
+    cursor: ew-resize;
+}
+
+.resize-handle.w {
+    top: 3px;
+    left: -3px;
+    bottom: 3px;
+    width: 6px;
+    cursor: ew-resize;
+}
+
+.resize-handle.ne {
+    top: -3px;
+    right: -3px;
+    width: 12px;
+    height: 12px;
+    cursor: nesw-resize;
+}
+
+.resize-handle.nw {
+    top: -3px;
+    left: -3px;
+    width: 12px;
+    height: 12px;
+    cursor: nwse-resize;
+}
+
+.resize-handle.se {
+    bottom: -3px;
+    right: -3px;
+    width: 12px;
+    height: 12px;
+    cursor: nwse-resize;
+}
+
+.resize-handle.sw {
+    bottom: -3px;
+    left: -3px;
+    width: 12px;
+    height: 12px;
+    cursor: nesw-resize;
+}
+
+/* Window Animations */
+.window.opening {
+    animation: windowOpen var(--transition-medium) ease-out;
+}
+
+.window.closing {
+    animation: windowClose var(--transition-fast) ease-in forwards;
+}
+
+@keyframes windowOpen {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes windowClose {
+    to {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+}
+
+/* Window Snap Indicators */
+.snap-indicator {
+    position: fixed;
+    background: rgba(0, 120, 212, 0.3);
+    border: 2px solid var(--primary-blue);
+    border-radius: var(--radius-md);
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0;
+    transition: opacity var(--transition-fast);
+}
+
+.snap-indicator.show {
+    opacity: 1;
+}
+
+/* Task View */
+.task-view {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 48px);
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 1500;
+    display: none;
+    padding: var(--spacing-xl);
+    overflow-y: auto;
+}
+
+.task-view.show {
+    display: block;
+    animation: fadeIn var(--transition-medium) ease-out;
+}
+
+.task-view-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.task-view-window {
+    position: relative;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    aspect-ratio: 16/10;
+}
+
+.task-view-window:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-heavy);
+}
+
+.task-view-window-header {
+    display: flex;
+    align-items: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.task-view-window-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: var(--spacing-sm);
+    color: var(--primary-blue);
+}
+
+.task-view-window-title {
+    flex: 1;
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.task-view-window-close {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+}
+
+.task-view-window-close:hover {
+    background: var(--error-red);
+    color: white;
+}
+
+.task-view-window-content {
+    height: calc(100% - 40px);
+    background: var(--bg-tertiary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-tertiary);
+    font-size: var(--font-size-sm);
+}
+
+/* Window Loading State */
+.window-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+
+.window-loading-spinner {
+    width: 32px;
+    height: 32px;
+    border: 3px solid var(--border-light);
+    border-top-color: var(--primary-blue);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* Window Menu */
+.window-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: var(--bg-glass-strong);
+    backdrop-filter: blur(30px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-heavy);
+    padding: var(--spacing-xs);
+    min-width: 150px;
+    z-index: 1001;
+    animation: scaleIn var(--transition-fast) ease-out;
+}
+
+.window-menu-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--transition-fast);
+    font-size: var(--font-size-sm);
+}
+
+.window-menu-item:hover {
+    background: rgba(0, 120, 212, 0.1);
+}
+
+.window-menu-item i {
+    width: 16px;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+/* Responsive Windows */
+@media (max-width: 768px) {
+    .window {
+        min-width: 280px;
+        min-height: 180px;
+    }
+    
+    .window-header {
+        height: 36px;
+        padding: 0 var(--spacing-sm);
+    }
+    
+    .window-control {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .task-view {
+        padding: var(--spacing-md);
+    }
+    
+    .task-view-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .window {
+        min-width: 100%;
+        min-height: 100%;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: calc(100vh - 48px) !important;
+        border-radius: 0;
+        border: none;
+    }
+    
+    .resize-handle {
+        display: none;
+    }
+}
+
+/* Window Focus Ring */
+.window:focus-visible {
+    outline: 2px solid var(--primary-blue);
+    outline-offset: 2px;
+}
+
+/* Window Transparency Effects */
+.window.transparent {
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.window.transparent .window-content {
+    background: transparent;
+}
+
+/* Window Shake Animation */
+.window.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}

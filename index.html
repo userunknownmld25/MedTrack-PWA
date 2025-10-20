@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 11 Web OS</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/desktop.css">
+    <link rel="stylesheet" href="styles/taskbar.css">
+    <link rel="stylesheet" href="styles/startmenu.css">
+    <link rel="stylesheet" href="styles/windows.css">
+    <link rel="stylesheet" href="styles/applications.css">
+    <link rel="stylesheet" href="styles/notifications.css">
+    <link rel="stylesheet" href="styles/enhancements.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230078D4'/><rect x='10' y='10' width='35' height='35' fill='white'/><rect x='55' y='10' width='35' height='35' fill='white'/><rect x='10' y='55' width='35' height='35' fill='white'/><rect x='55' y='55' width='35' height='35' fill='white'/></svg>">
+</head>
+<body>
+    <!-- Desktop Environment -->
+    <div id="desktop">
+        <!-- Desktop Background -->
+        <div id="desktop-background"></div>
+        
+        <!-- Desktop Icons -->
+        <div id="desktop-icons">
+            <div class="desktop-icon" data-app="file-manager">
+                <div class="icon-image">
+                    <i class="fas fa-folder"></i>
+                </div>
+                <div class="icon-label">File Manager</div>
+            </div>
+            <div class="desktop-icon" data-app="text-editor">
+                <div class="icon-image">
+                    <i class="fas fa-file-alt"></i>
+                </div>
+                <div class="icon-label">Text Editor</div>
+            </div>
+            <div class="desktop-icon" data-app="code-editor">
+                <div class="icon-image">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="icon-label">Code Editor</div>
+            </div>
+            <div class="desktop-icon" data-app="terminal">
+                <div class="icon-image">
+                    <i class="fas fa-terminal"></i>
+                </div>
+                <div class="icon-label">Terminal</div>
+            </div>
+            <div class="desktop-icon" data-app="browser">
+                <div class="icon-image">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <div class="icon-label">Web Browser</div>
+            </div>
+            <div class="desktop-icon" data-app="paint">
+                <div class="icon-image">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <div class="icon-label">Paint</div>
+            </div>
+            <div class="desktop-icon" data-app="video-editor">
+                <div class="icon-image">
+                    <i class="fas fa-video"></i>
+                </div>
+                <div class="icon-label">Video Editor</div>
+            </div>
+            <div class="desktop-icon" data-app="games">
+                <div class="icon-image">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <div class="icon-label">Games</div>
+            </div>
+        </div>
+
+        <!-- Windows Container -->
+        <div id="windows-container"></div>
+
+        <!-- Context Menu -->
+        <div id="context-menu" class="context-menu hidden">
+            <div class="context-item" data-action="refresh">
+                <i class="fas fa-sync-alt"></i>
+                <span>Refresh</span>
+            </div>
+            <div class="context-item" data-action="new-folder">
+                <i class="fas fa-folder-plus"></i>
+                <span>New Folder</span>
+            </div>
+            <div class="context-item" data-action="new-file">
+                <i class="fas fa-file-plus"></i>
+                <span>New File</span>
+            </div>
+            <div class="context-divider"></div>
+            <div class="context-item" data-action="personalize">
+                <i class="fas fa-palette"></i>
+                <span>Personalize</span>
+            </div>
+            <div class="context-item" data-action="display-settings">
+                <i class="fas fa-desktop"></i>
+                <span>Display settings</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Taskbar -->
+    <div id="taskbar">
+        <div class="taskbar-section taskbar-left">
+            <div id="start-button" class="taskbar-button">
+                <div class="windows-logo">
+                    <div class="logo-square"></div>
+                    <div class="logo-square"></div>
+                    <div class="logo-square"></div>
+                    <div class="logo-square"></div>
+                </div>
+            </div>
+            <div id="search-box" class="taskbar-search">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Type here to search">
+            </div>
+            <div id="task-view" class="taskbar-button" title="Task view">
+                <i class="fas fa-th-large"></i>
+            </div>
+        </div>
+        
+        <div class="taskbar-section taskbar-center">
+            <div id="running-apps"></div>
+        </div>
+        
+        <div class="taskbar-section taskbar-right">
+            <div class="system-tray">
+                <div class="tray-icon" id="wifi-icon" title="Network">
+                    <i class="fas fa-wifi"></i>
+                </div>
+                <div class="tray-icon" id="volume-icon" title="Volume">
+                    <i class="fas fa-volume-up"></i>
+                </div>
+                <div class="tray-icon" id="battery-icon" title="Battery">
+                    <i class="fas fa-battery-full"></i>
+                </div>
+                <div class="tray-icon" id="notifications-icon" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                </div>
+            </div>
+            <div id="clock" class="taskbar-clock">
+                <div class="time">12:00 PM</div>
+                <div class="date">1/1/2024</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Start Menu -->
+    <div id="start-menu" class="start-menu hidden">
+        <div class="start-menu-header">
+            <div class="user-profile">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-name">User</div>
+            </div>
+        </div>
+        
+        <div class="start-menu-content">
+            <div class="start-menu-section">
+                <div class="section-title">Pinned</div>
+                <div class="pinned-apps">
+                    <div class="start-app" data-app="file-manager">
+                        <div class="app-icon"><i class="fas fa-folder"></i></div>
+                        <div class="app-name">File Manager</div>
+                    </div>
+                    <div class="start-app" data-app="text-editor">
+                        <div class="app-icon"><i class="fas fa-file-alt"></i></div>
+                        <div class="app-name">Text Editor</div>
+                    </div>
+                    <div class="start-app" data-app="code-editor">
+                        <div class="app-icon"><i class="fas fa-code"></i></div>
+                        <div class="app-name">Code Editor</div>
+                    </div>
+                    <div class="start-app" data-app="terminal">
+                        <div class="app-icon"><i class="fas fa-terminal"></i></div>
+                        <div class="app-name">Terminal</div>
+                    </div>
+                    <div class="start-app" data-app="browser">
+                        <div class="app-icon"><i class="fas fa-globe"></i></div>
+                        <div class="app-name">Web Browser</div>
+                    </div>
+                    <div class="start-app" data-app="paint">
+                        <div class="app-icon"><i class="fas fa-paint-brush"></i></div>
+                        <div class="app-name">Paint</div>
+                    </div>
+                    <div class="start-app" data-app="video-editor">
+                        <div class="app-icon"><i class="fas fa-video"></i></div>
+                        <div class="app-name">Video Editor</div>
+                    </div>
+                    <div class="start-app" data-app="games">
+                        <div class="app-icon"><i class="fas fa-gamepad"></i></div>
+                        <div class="app-name">Games</div>
+                    </div>
+                    <div class="start-app" data-app="app-store">
+                        <div class="app-icon"><i class="fas fa-store"></i></div>
+                        <div class="app-name">App Store</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="start-menu-section">
+                <div class="section-title">Recommended</div>
+                <div class="recommended-items">
+                    <div class="recommended-item">
+                        <div class="item-icon"><i class="fas fa-file"></i></div>
+                        <div class="item-info">
+                            <div class="item-name">Welcome.txt</div>
+                            <div class="item-path">Desktop</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="start-menu-footer">
+            <div class="power-button" title="Power">
+                <i class="fas fa-power-off"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Center -->
+    <div id="notification-center" class="notification-center hidden">
+        <div class="notification-header">
+            <h3>Notifications</h3>
+            <button class="clear-all">Clear all</button>
+        </div>
+        <div class="notification-content">
+            <div class="notification-item">
+                <div class="notification-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="notification-text">
+                    <div class="notification-title">Welcome to Windows 11 Web OS</div>
+                    <div class="notification-message">Your desktop environment is ready to use!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <div class="loading-content">
+            <div class="windows-logo-large">
+                <div class="logo-square"></div>
+                <div class="logo-square"></div>
+                <div class="logo-square"></div>
+                <div class="logo-square"></div>
+            </div>
+            <div class="loading-text">Windows 11</div>
+            <div class="loading-spinner">
+                <div class="spinner-dot"></div>
+                <div class="spinner-dot"></div>
+                <div class="spinner-dot"></div>
+                <div class="spinner-dot"></div>
+                <div class="spinner-dot"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/core/filesystem.js"></script>
+    <script src="js/core/window-manager.js"></script>
+    <script src="js/core/desktop.js"></script>
+    <script src="js/core/taskbar.js"></script>
+    <script src="js/core/startmenu.js"></script>
+    <script src="js/applications/file-manager.js"></script>
+    <script src="js/applications/text-editor.js"></script>
+    <script src="js/applications/code-editor.js"></script>
+    <script src="js/applications/terminal.js"></script>
+    <script src="js/applications/browser.js"></script>
+    <script src="js/applications/paint.js"></script>
+    <script src="js/applications/video-editor.js"></script>
+    <script src="js/applications/games.js"></script>
+    <script src="js/applications/app-store.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

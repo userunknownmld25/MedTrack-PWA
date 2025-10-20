@@ -1,0 +1,335 @@
+/* Desktop Environment Styles */
+
+#desktop {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: var(--z-desktop);
+}
+
+#desktop-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+/* Default Windows 11 wallpaper gradient */
+#desktop-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, 
+        #0078D4 0%, 
+        #005A9E 25%, 
+        #00BCF2 50%, 
+        #40E0D0 75%, 
+        #FF6B6B 100%);
+    opacity: 0.8;
+    z-index: 1;
+}
+
+#desktop-background::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.05"/><circle cx="10" cy="60" r="0.5" fill="white" opacity="0.05"/><circle cx="90" cy="40" r="0.5" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    z-index: 2;
+}
+
+/* Desktop Icons */
+#desktop-icons {
+    position: absolute;
+    top: var(--spacing-lg);
+    left: var(--spacing-lg);
+    z-index: 10;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 80px);
+    gap: var(--spacing-lg);
+    max-width: 400px;
+}
+
+.desktop-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    user-select: none;
+}
+
+.desktop-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transform: translateY(-2px);
+}
+
+.desktop-icon:active {
+    transform: translateY(0);
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.desktop-icon.selected {
+    background: rgba(0, 120, 212, 0.3);
+    border: 1px solid rgba(0, 120, 212, 0.5);
+}
+
+.icon-image {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-xs);
+    box-shadow: var(--shadow-light);
+    transition: all var(--transition-fast);
+}
+
+.desktop-icon:hover .icon-image {
+    background: rgba(255, 255, 255, 1);
+    box-shadow: var(--shadow-medium);
+    transform: scale(1.05);
+}
+
+.icon-image i {
+    font-size: 24px;
+    color: var(--primary-blue);
+}
+
+.icon-label {
+    font-size: var(--font-size-xs);
+    font-weight: 500;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    line-height: 1.2;
+    max-width: 70px;
+    word-wrap: break-word;
+}
+
+/* Context Menu */
+.context-menu {
+    position: fixed;
+    background: var(--bg-glass-strong);
+    backdrop-filter: blur(30px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-heavy);
+    padding: var(--spacing-xs);
+    min-width: 200px;
+    z-index: var(--z-context-menu);
+    animation: scaleIn var(--transition-fast) ease-out;
+}
+
+.context-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background var(--transition-fast);
+    font-size: var(--font-size-sm);
+}
+
+.context-item:hover {
+    background: rgba(0, 120, 212, 0.1);
+}
+
+.context-item i {
+    width: 16px;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.context-divider {
+    height: 1px;
+    background: var(--border-light);
+    margin: var(--spacing-xs) 0;
+}
+
+/* Selection Rectangle */
+.selection-rectangle {
+    position: absolute;
+    border: 1px solid var(--primary-blue);
+    background: rgba(0, 120, 212, 0.1);
+    pointer-events: none;
+    z-index: 5;
+}
+
+/* Desktop Widgets */
+.desktop-widget {
+    position: absolute;
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-medium);
+    padding: var(--spacing-md);
+    min-width: 200px;
+    z-index: 5;
+}
+
+.widget-header {
+    display: flex;
+    align-items: center;
+    justify-content: between;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+    font-size: var(--font-size-sm);
+    color: var(--text-primary);
+}
+
+.widget-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: var(--spacing-xs);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+}
+
+.widget-close:hover {
+    background: var(--error-red);
+    color: white;
+}
+
+/* Weather Widget */
+.weather-widget {
+    top: var(--spacing-xl);
+    right: var(--spacing-xl);
+}
+
+.weather-info {
+    text-align: center;
+}
+
+.weather-temp {
+    font-size: var(--font-size-2xl);
+    font-weight: 300;
+    margin-bottom: var(--spacing-xs);
+}
+
+.weather-desc {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-sm);
+}
+
+.weather-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-xs);
+    color: var(--text-tertiary);
+}
+
+/* Clock Widget */
+.clock-widget {
+    bottom: 120px;
+    right: var(--spacing-xl);
+}
+
+.clock-time {
+    font-size: var(--font-size-3xl);
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: var(--spacing-xs);
+}
+
+.clock-date {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+/* Responsive Desktop */
+@media (max-width: 768px) {
+    #desktop-icons {
+        grid-template-columns: repeat(auto-fill, 70px);
+        gap: var(--spacing-md);
+        top: var(--spacing-md);
+        left: var(--spacing-md);
+    }
+    
+    .desktop-icon {
+        padding: var(--spacing-xs);
+    }
+    
+    .icon-image {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .icon-image i {
+        font-size: 20px;
+    }
+    
+    .icon-label {
+        font-size: 10px;
+        max-width: 60px;
+    }
+    
+    .desktop-widget {
+        position: relative;
+        margin: var(--spacing-md);
+        width: calc(100% - 2 * var(--spacing-md));
+    }
+    
+    .weather-widget,
+    .clock-widget {
+        position: relative;
+        top: auto;
+        right: auto;
+        bottom: auto;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .desktop-icon {
+        border: 1px solid transparent;
+    }
+    
+    .desktop-icon:hover {
+        border-color: white;
+        background: rgba(255, 255, 255, 0.2);
+    }
+    
+    .desktop-icon.selected {
+        border-color: var(--primary-blue);
+        background: rgba(0, 120, 212, 0.5);
+    }
+}
+
+/* Animation for desktop icons */
+.desktop-icon {
+    animation: fadeIn 0.5s ease-out;
+}
+
+.desktop-icon:nth-child(1) { animation-delay: 0.1s; }
+.desktop-icon:nth-child(2) { animation-delay: 0.2s; }
+.desktop-icon:nth-child(3) { animation-delay: 0.3s; }
+.desktop-icon:nth-child(4) { animation-delay: 0.4s; }
+.desktop-icon:nth-child(5) { animation-delay: 0.5s; }
+.desktop-icon:nth-child(6) { animation-delay: 0.6s; }
+.desktop-icon:nth-child(7) { animation-delay: 0.7s; }
+.desktop-icon:nth-child(8) { animation-delay: 0.8s; }
