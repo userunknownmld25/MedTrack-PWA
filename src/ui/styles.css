@@ -1,0 +1,53 @@
+:root{
+  --color-primary:#0078D4;
+  --color-secondary:#005A9E;
+  --color-accent:#00BCF2;
+  --color-bg:#F3F3F3;
+  --color-dark:#1F1F1F;
+  --glass: rgba(255,255,255,0.5);
+  --success:#107C10;
+  --radius:8px;
+}
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;
+  font-family: Inter, Segoe UI, system-ui, -apple-system, sans-serif;
+  background: var(--color-bg);
+  color:#111;
+}
+.app-root{
+  height:100%;
+  display:grid;
+  grid-template-rows: 1fr auto;
+}
+.window{
+  backdrop-filter: blur(16px) saturate(140%);
+  background: var(--glass);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  border: 1px solid rgba(255,255,255,0.4);
+  overflow: hidden;
+}
+.titlebar{
+  display:flex;align-items:center;justify-content:space-between;
+  background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4));
+  padding: 6px 10px;
+}
+.titlebar .controls button{border:none;background:transparent;padding:6px;border-radius:6px;cursor:pointer}
+.titlebar .controls button:hover{background:rgba(0,0,0,0.06)}
+.taskbar{
+  height:52px;
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(0,0,0,0.06);
+  display:flex;align-items:center;gap:10px;justify-content:center;
+}
+.start-button{background:var(--color-primary);color:white;border:none;border-radius:10px;padding:8px 14px;cursor:pointer}
+.desktop{
+  position:relative;
+  overflow:hidden;
+  background: radial-gradient(1200px 800px at 20% 20%, #e6f2ff, transparent),
+              radial-gradient(1200px 800px at 80% 80%, #f0f7ff, transparent),
+              var(--color-bg);
+}
