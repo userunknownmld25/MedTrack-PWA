@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebOS - Windows 11 Replica</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/desktop.css">
+    <link rel="stylesheet" href="styles/applications.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Desktop Background -->
+    <div class="desktop" id="desktop">
+        <!-- Wallpaper -->
+        <div class="wallpaper"></div>
+        
+        <!-- Desktop Icons -->
+        <div class="desktop-icons">
+            <div class="desktop-icon" data-app="file-manager">
+                <div class="icon">📁</div>
+                <span>File Manager</span>
+            </div>
+            <div class="desktop-icon" data-app="browser">
+                <div class="icon">🌐</div>
+                <span>Browser</span>
+            </div>
+            <div class="desktop-icon" data-app="text-editor">
+                <div class="icon">📝</div>
+                <span>Text Editor</span>
+            </div>
+            <div class="desktop-icon" data-app="code-editor">
+                <div class="icon">💻</div>
+                <span>Code Editor</span>
+            </div>
+            <div class="desktop-icon" data-app="terminal">
+                <div class="icon">⚡</div>
+                <span>Terminal</span>
+            </div>
+            <div class="desktop-icon" data-app="paint">
+                <div class="icon">🎨</div>
+                <span>Paint</span>
+            </div>
+            <div class="desktop-icon" data-app="video-editor">
+                <div class="icon">🎬</div>
+                <span>Video Editor</span>
+            </div>
+            <div class="desktop-icon" data-app="games">
+                <div class="icon">🎮</div>
+                <span>Games</span>
+            </div>
+        </div>
+
+        <!-- Windows Container -->
+        <div class="windows-container" id="windows-container"></div>
+    </div>
+
+    <!-- Taskbar -->
+    <div class="taskbar" id="taskbar">
+        <div class="start-button" id="start-button">
+            <div class="start-icon">⊞</div>
+        </div>
+        
+        <div class="taskbar-center">
+            <div class="search-box">
+                <div class="search-icon">🔍</div>
+                <input type="text" placeholder="Type here to search" id="search-input">
+            </div>
+        </div>
+        
+        <div class="taskbar-right">
+            <div class="system-tray">
+                <div class="tray-icon">🔊</div>
+                <div class="tray-icon">🌐</div>
+                <div class="tray-icon">🔋</div>
+                <div class="tray-icon">📅</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Start Menu -->
+    <div class="start-menu" id="start-menu">
+        <div class="start-menu-content">
+            <div class="pinned-apps">
+                <h3>Pinned</h3>
+                <div class="app-grid">
+                    <div class="app-item" data-app="file-manager">
+                        <div class="app-icon">📁</div>
+                        <span>File Manager</span>
+                    </div>
+                    <div class="app-item" data-app="browser">
+                        <div class="app-icon">🌐</div>
+                        <span>Browser</span>
+                    </div>
+                    <div class="app-item" data-app="text-editor">
+                        <div class="app-icon">📝</div>
+                        <span>Text Editor</span>
+                    </div>
+                    <div class="app-item" data-app="code-editor">
+                        <div class="app-icon">💻</div>
+                        <span>Code Editor</span>
+                    </div>
+                    <div class="app-item" data-app="terminal">
+                        <div class="app-icon">⚡</div>
+                        <span>Terminal</span>
+                    </div>
+                    <div class="app-item" data-app="paint">
+                        <div class="app-icon">🎨</div>
+                        <span>Paint</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="all-apps">
+                <h3>All apps</h3>
+                <div class="app-list">
+                    <div class="app-list-item" data-app="file-manager">
+                        <div class="app-icon">📁</div>
+                        <span>File Manager</span>
+                    </div>
+                    <div class="app-list-item" data-app="browser">
+                        <div class="app-icon">🌐</div>
+                        <span>Browser</span>
+                    </div>
+                    <div class="app-list-item" data-app="text-editor">
+                        <div class="app-icon">📝</div>
+                        <span>Text Editor</span>
+                    </div>
+                    <div class="app-list-item" data-app="code-editor">
+                        <div class="app-icon">💻</div>
+                        <span>Code Editor</span>
+                    </div>
+                    <div class="app-list-item" data-app="terminal">
+                        <div class="app-icon">⚡</div>
+                        <span>Terminal</span>
+                    </div>
+                    <div class="app-list-item" data-app="paint">
+                        <div class="app-icon">🎨</div>
+                        <span>Paint</span>
+                    </div>
+                    <div class="app-list-item" data-app="video-editor">
+                        <div class="app-icon">🎬</div>
+                        <span>Video Editor</span>
+                    </div>
+                    <div class="app-list-item" data-app="games">
+                        <div class="app-icon">🎮</div>
+                        <span>Games</span>
+                    </div>
+                    <div class="app-list-item" data-app="settings">
+                        <div class="app-icon">⚙️</div>
+                        <span>Settings</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Context Menu -->
+    <div class="context-menu" id="context-menu">
+        <div class="context-item">New Folder</div>
+        <div class="context-item">New File</div>
+        <div class="context-item">Paste</div>
+        <div class="context-item">Properties</div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/core.js"></script>
+    <script src="js/window-manager.js"></script>
+    <script src="js/applications.js"></script>
+    <script src="js/terminal.js"></script>
+    <script src="js/code-editor.js"></script>
+    <script src="js/file-manager.js"></script>
+    <script src="js/browser.js"></script>
+    <script src="js/paint.js"></script>
+    <script src="js/video-editor.js"></script>
+    <script src="js/games.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
