@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebOS - Windows 11 Replica</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/material-darker.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/xml/xml.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.min.js"></script>
+</head>
+<body>
+    <div id="desktop">
+        <!-- Desktop Wallpaper -->
+        <div id="wallpaper"></div>
+        
+        <!-- Desktop Icons -->
+        <div id="desktop-icons">
+            <div class="desktop-icon" data-app="file-manager">
+                <div class="icon">📁</div>
+                <span>File Manager</span>
+            </div>
+            <div class="desktop-icon" data-app="browser">
+                <div class="icon">🌐</div>
+                <span>Browser</span>
+            </div>
+            <div class="desktop-icon" data-app="code-editor">
+                <div class="icon">💻</div>
+                <span>Code Editor</span>
+            </div>
+            <div class="desktop-icon" data-app="terminal">
+                <div class="icon">⚡</div>
+                <span>Terminal</span>
+            </div>
+            <div class="desktop-icon" data-app="paint">
+                <div class="icon">🎨</div>
+                <span>Paint</span>
+            </div>
+            <div class="desktop-icon" data-app="games">
+                <div class="icon">🎮</div>
+                <span>Games</span>
+            </div>
+        </div>
+
+        <!-- Taskbar -->
+        <div id="taskbar">
+            <div class="taskbar-left">
+                <button id="start-button" class="start-button">
+                    <div class="start-icon">⊞</div>
+                </button>
+                <div class="taskbar-apps">
+                    <!-- App buttons will be added dynamically -->
+                </div>
+            </div>
+            <div class="taskbar-center">
+                <div class="search-box">
+                    <input type="text" placeholder="Type here to search..." id="search-input">
+                </div>
+            </div>
+            <div class="taskbar-right">
+                <div class="system-tray">
+                    <div class="tray-icon">🔊</div>
+                    <div class="tray-icon">🌐</div>
+                    <div class="tray-icon">🔋</div>
+                    <div class="tray-icon" id="time-display">12:00</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Start Menu -->
+        <div id="start-menu" class="hidden">
+            <div class="start-menu-content">
+                <div class="start-menu-left">
+                    <div class="user-profile">
+                        <div class="user-avatar">👤</div>
+                        <div class="user-info">
+                            <div class="user-name">User</div>
+                            <div class="user-email">user@webos.com</div>
+                        </div>
+                    </div>
+                    <div class="pinned-apps">
+                        <div class="app-tile" data-app="file-manager">
+                            <div class="app-icon">📁</div>
+                            <span>File Manager</span>
+                        </div>
+                        <div class="app-tile" data-app="browser">
+                            <div class="app-icon">🌐</div>
+                            <span>Browser</span>
+                        </div>
+                        <div class="app-tile" data-app="code-editor">
+                            <div class="app-icon">💻</div>
+                            <span>Code Editor</span>
+                        </div>
+                        <div class="app-tile" data-app="terminal">
+                            <div class="app-icon">⚡</div>
+                            <span>Terminal</span>
+                        </div>
+                        <div class="app-tile" data-app="paint">
+                            <div class="app-icon">🎨</div>
+                            <span>Paint</span>
+                        </div>
+                        <div class="app-tile" data-app="video-editor">
+                            <div class="app-icon">🎬</div>
+                            <span>Video Editor</span>
+                        </div>
+                        <div class="app-tile" data-app="games">
+                            <div class="app-icon">🎮</div>
+                            <span>Games</span>
+                        </div>
+                        <div class="app-tile" data-app="settings">
+                            <div class="app-icon">⚙️</div>
+                            <span>Settings</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="start-menu-right">
+                    <div class="recommended-section">
+                        <h3>Recommended</h3>
+                        <div class="recommended-item">
+                            <div class="item-icon">📄</div>
+                            <div class="item-info">
+                                <div class="item-name">Document.txt</div>
+                                <div class="item-path">Desktop</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Windows Container -->
+        <div id="windows-container">
+            <!-- Windows will be dynamically added here -->
+        </div>
+
+        <!-- Context Menu -->
+        <div id="context-menu" class="hidden">
+            <div class="context-item">View</div>
+            <div class="context-item">Sort by</div>
+            <div class="context-item">Refresh</div>
+            <div class="context-item">Paste</div>
+            <div class="context-item">New</div>
+            <div class="context-item">Properties</div>
+        </div>
+    </div>
+
+    <!-- App Templates -->
+    <template id="window-template">
+        <div class="window" data-app="">
+            <div class="window-header">
+                <div class="window-title"></div>
+                <div class="window-controls">
+                    <button class="window-minimize">−</button>
+                    <button class="window-maximize">□</button>
+                    <button class="window-close">×</button>
+                </div>
+            </div>
+            <div class="window-content"></div>
+        </div>
+    </template>
+
+    <script src="js/window-manager.js"></script>
+    <script src="js/apps/browser.js"></script>
+    <script src="js/apps/file-manager.js"></script>
+    <script src="js/apps/code-editor.js"></script>
+    <script src="js/apps/terminal.js"></script>
+    <script src="js/apps/paint.js"></script>
+    <script src="js/apps/video-editor.js"></script>
+    <script src="js/apps/games.js"></script>
+    <script src="js/apps/settings.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
